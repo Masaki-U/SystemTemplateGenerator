@@ -1,8 +1,13 @@
 package org.example
 
+import freemarker.template.Configuration
+import freemarker.template.TemplateExceptionHandler
+import java.io.File
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
+    val cfg = genConfig()
     val name = "Kotlin"
     //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
     // to see how IntelliJ IDEA suggests fixing it.
@@ -13,4 +18,12 @@ fun main() {
         // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
         println("i = $i")
     }
+}
+
+private fun genConfig() = Configuration(Configuration.VERSION_2_3_31).apply {
+    setDirectoryForTemplateLoading(File("テンプレートのパス"))
+    defaultEncoding = "UTF-8"
+    templateExceptionHandler = TemplateExceptionHandler.RETHROW_HANDLER
+    logTemplateExceptions = false
+    wrapUncheckedExceptions = true
 }
